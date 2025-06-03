@@ -4,12 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css" />
+    <title>Checklist</title>
+
+   
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
+        integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css" />
+  
+
+
     <link rel="stylesheet" href="./css/lib/fontawesome/css/all.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -28,9 +35,9 @@
 
             <div class="row mb-4">
                 <div class="col-md-2">
-                    <label for="state-filter">Filter by State</label>
-                    <select id="state-filter" class="selectpicker  show-tick " title="Choose an option"
-                        data-width="100%" data-style="btn-light">
+                    <label for="state-filter" class="form-label">Filter by State</label>
+                    <select id="state-filter" class="form-control">
+                        <option value="">Choose an option</option>
                         <option>Being Built</option>
                         <option>Being Reviewed</option>
                         <option>Submitted For Review</option>
@@ -38,9 +45,9 @@
                 </div>
 
                 <div class="col-md-2">
-                    <label for="role-filter">Filter by Role</label>
-                    <select id="role-filter" class="selectpicker  show-tick" title="Choose an option" data-width="100%"
-                        data-style="btn-light">
+                    <label for="role-filter" class="form-label">Filter by Role</label>
+                    <select id="role-filter" class="form-control">
+                        <option value="">Choose an option</option>
                         <option>Mustard</option>
                         <option>Ketchup</option>
                         <option>Barbecue</option>
@@ -49,15 +56,19 @@
 
                 <div class="col-md-2">
                     <label for="datetime">Filter by Calendar</label>
-                    <input type="text" id="datetime" class="form-control" placeholder="Select date ...">
+                    <div class="input-group datepicker date mb-1">
+                        <input type="text" class="form-control" value="12-02-2012">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-4 d-flex align-items-end relative">
-                       <input type="search" id="search" placeholder="Search..." class="form-control">
-                       <i class="fa-solid fa-magnifying-glass"></i>
+                <div class="col-md-4 mb-1 d-flex align-items-end position-relative">
+                    <input type="search" id="search" placeholder="Search..." class="form-control">
+                    <i class="fa-solid fa-magnifying-glass position-absolute" style="right: 30px; bottom: 13px;"></i>
                 </div>
-
-                <div class="col-md-2 d-flex align-items-end">
+                <div class="col-md-2 d-flex mb-1 align-items-end">
                     <button class="btn btn-primary w-100">Search</button>
                 </div>
             </div>
@@ -259,30 +270,34 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"
+        integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="./js/lib/fontawesome.min.js"></script>
+
+    <!-- Initialization -->
     <script>
         $(document).ready(function () {
-            $('.selectpicker').selectpicker();
+            // Select2
+            $('.select2').select2();
 
-            flatpickr("#datetime", {
-                enableTime: true,
-                dateFormat: "Y-m-d H:i"
+
+            // datepicker
+            $('.datepicker').datepicker({
+                format: 'mm/dd/yyyy',
+                startDate: '-3d',
+                orientation: 'bottom'
             });
 
-            new DataTable('#example', {
-                layout: {
-                    bottomStart: 'pageLength',
-                    topStart: null,
-
-                },
-                search: null,
-                ordering: false,
+            // DataTable
+            $('#example').DataTable({
                 paging: true,
+                ordering: false,
                 scrollY: 400,
-
+                lengthChange: true
             });
         });
     </script>

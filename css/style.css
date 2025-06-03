@@ -19,11 +19,13 @@
 }
 .fa-magnifying-glass{
     position: absolute;
-    right: 30px;
+    right: -70px;
     top:40px;
     color:var(--table-header-bg-color)
 }
-
+.datepicker{
+    padding:0px;
+}
 h5{
     color:var(--logo-color);
     font-weight: bold;
@@ -68,4 +70,7 @@ table tbody  td tr {
 }
 .dt-search {
 display: none;
+}
+.dt-length{
+    display: none;
 }
