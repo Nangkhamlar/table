@@ -6,24 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checklist</title>
 
-   
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
         integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css" />
-  
-
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="./css/lib/fontawesome/css/all.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <div class="container">
-        <div class="header-table d-flex align-items-center mb-2">
+        <div class="header-table mb-2">
             <img src="./images/logo.PNG" width="30" height="30" alt="" class="mr-2">
             <h5 class="mb-0">LEUCINE</h5>
         </div>
@@ -36,8 +33,8 @@
             <div class="row mb-4">
                 <div class="col-md-2">
                     <label for="state-filter" class="form-label">Filter by State</label>
-                    <select id="state-filter" class="form-control">
-                        <option value="">Choose an option</option>
+                    <select id="state-filter" class="form-control js-example-tags " id="js-example-basic-hide-search">
+                        <option value="">Select an option</option>
                         <option>Being Built</option>
                         <option>Being Reviewed</option>
                         <option>Submitted For Review</option>
@@ -46,8 +43,8 @@
 
                 <div class="col-md-2">
                     <label for="role-filter" class="form-label">Filter by Role</label>
-                    <select id="role-filter" class="form-control">
-                        <option value="">Choose an option</option>
+                    <select id="role-filter" class="form-control js-example-tags" id="js-example-basic-hide-search">
+                        <option value="">Select an option</option>
                         <option>Mustard</option>
                         <option>Ketchup</option>
                         <option>Barbecue</option>
@@ -66,10 +63,10 @@
 
                 <div class="col-md-4 mb-1 d-flex align-items-end position-relative">
                     <input type="search" id="search" placeholder="Search..." class="form-control">
-                    <i class="fa-solid fa-magnifying-glass position-absolute" style="right: 30px; bottom: 13px;"></i>
+                    <i class="fa-solid fa-magnifying-glass position-absolute" style="right: 30px; bottom: 10px;"></i>
                 </div>
-                <div class="col-md-2 d-flex mb-1 align-items-end">
-                    <button class="btn btn-primary w-100">Search</button>
+                <div class="col-md-2 mb-1 d-flex align-items-end ">
+                    <button class="btn  search-btn ">Search</button>
                 </div>
             </div>
 
@@ -282,9 +279,11 @@
     <script>
         $(document).ready(function () {
             // Select2
-            $('.select2').select2();
 
-
+            $(" js-example-tags").select2({
+                placeholder: 'select an option',
+                allowClear: true
+            })
             // datepicker
             $('.datepicker').datepicker({
                 format: 'mm/dd/yyyy',
